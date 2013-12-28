@@ -23,7 +23,7 @@ my %passwords = map {$_ => 0} map(lc, @ARGV);
 my ($passwd, $correct);
 for (0 .. $#ARGV) {
 	print "Enter password and number of correct letters.\n> ";
-	<STDIN>;
+	$_ = <STDIN>;
 	($passwd, $correct) = split /\W+/;
 	$passwd = lc($passwd);
 	$correct = int($correct);
