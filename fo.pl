@@ -47,7 +47,18 @@ for (0 .. $#ARGV) {
 	}
 	my @entered = split(//, $passwd);
 	delete $passwords{$passwd};
-	foreach (%passwords) {
-		#if ( similarity(
+	foreach (keys %passwords) {
+		unless ( similarity(\@entered, $_) == $correct ) {
+			delete $passwords{$_};
+		}
+	}
+	my $num = keys %passwords;
+	if ($num > 1) {
+		print "Possible passwords: " . join(' ', keys %passwords);
+	} elsif ($num = 1) {
+		print 'The password is: ' . join('', keys %passwords);
+		exit;
+	} else {
+		die 'No more passwords left';
 	}
 }
