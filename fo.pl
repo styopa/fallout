@@ -1,4 +1,5 @@
 #!/usr/bin/perl
+# helps hack terminals in Fallout 3
 use strict;
 use warnings;
 use diagnostics;
@@ -37,4 +38,12 @@ for (0 .. $#ARGV) {
 	($passwd, $correct) = split /\W+/;
 	$passwd = lc($passwd);
 	$correct = int($correct);
+	unless (exists $passwords{$passwd}) {
+		die "$passwd is not in the list of possible passwords\n";
+	}
+	my @entered = split(//, $passwd);
+	delete $passwords{$passwd};
+	foreach (%passwords) {
+		#if ( similarity(
+	}
 }
