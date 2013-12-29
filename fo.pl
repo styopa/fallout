@@ -18,11 +18,11 @@ foreach my $arg (@ARGV) {
 }
 
 sub similarity {
-	my @op1 = split(//, shift);
+	my $op1 = shift; # ref to array
 	my @op2 = split(//, shift);
 	my $i = 0;
-	for (0 .. $#op1) {
-		$i++ if $op1[$_] eq $op2[$_];
+	for (0 .. $#op2) {
+		$i++ if $$op1[$_] eq $op2[$_];
 	}
 	return $i;
 }
