@@ -39,6 +39,7 @@ for (0 .. $#ARGV) {
 		print "Enter password and number of correct letters\n> ";
 	}
 	$_ = <STDIN>;
+	exit unless defined;
 	($passwd, $correct) = split /\W+/;
 	$passwd = lc($passwd);
 	$correct = int($correct);
