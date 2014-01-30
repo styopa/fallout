@@ -1,5 +1,6 @@
 #!/usr/bin/perl
 # helps hack terminals in Fallout 3
+# copyright 2014, Styopa Semenukha, GPL v3+
 use strict;
 use warnings;
 use diagnostics;
