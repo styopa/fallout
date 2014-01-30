@@ -19,7 +19,7 @@ foreach my $arg (@ARGV) {
 	}
 }
 
-sub similarity {
+sub hamming {
 	my $op1 = shift; # ref to array
 	my @op2 = split(//, shift);
 	my $i = 0;
@@ -49,7 +49,7 @@ for (0 .. $#ARGV) {
 	my @entered = split(//, $passwd);
 	delete $passwords{$passwd};
 	foreach (keys %passwords) {
-		unless ( similarity(\@entered, $_) == $correct ) {
+		unless ( hamming(\@entered, $_) == $correct ) {
 			delete $passwords{$_};
 		}
 	}
