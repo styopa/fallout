@@ -1,6 +1,6 @@
 #!/usr/bin/perl
-# helps hack terminals in Fallout 3
-# copyright 2014, Styopa Semenukha, GPL v3+
+# helps hack terminals in Fallout 3 and 4
+# copyright 2015, Styopa Semenukha, GPL v3+
 use strict;
 use warnings;
 use diagnostics;
@@ -8,7 +8,7 @@ $\ = "\n";
 
 if ($#ARGV < 1) {
 	my $num = $#ARGV + 1;
-	die "Too little arguments: $num\n" .
+	die "Too few arguments: $num\n" .
 		"USAGE: $0 PASSWORD PASSWORD..."
 }
 
