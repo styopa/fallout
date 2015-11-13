@@ -11,7 +11,16 @@ def hamming(op1, op2):
             i += 1
     return i
 
-if len(sys.argv) < 2:
-    print("Too few arguments: %i" % (len(sys.argv) - 1), file = sys.stderr)
+passwords = sys.argv[1:]
+
+if len(passwords) < 1:
+    print("Too few arguments: %i" % len(passwords), file = sys.stderr)
     print("USAGE: %s PASSWORD PASSWORD..." % sys.argv[0])
     exit(1)
+
+len_ = len(passwords[0])
+for passw in passwords:
+    if len(passw) != len_:
+        print("Passwords are of different length: '%s' and '%s'"
+                % (passwords[0], passw), file = sys.stderr)
+        exit(1)
