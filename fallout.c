@@ -3,13 +3,23 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-int inarray(const char **array, int num, const char *string) {
-	for (int i = 0; i < num; i++) {
+int inarray(const char **array, int len, const char *string) {
+	for (int i = 0; i < len; i++) {
 		if (!strcmp(string, array[i])) {
-			return 1;
+			return i;
 		}
 	}
-	return 0;
+	return -1;
+}
+
+void remove(char **array, int *len, const char *string) {
+	int pos = inarray( (const char **) array, *len, string );
+	int last = len - 1;
+	if (pos != last) {
+		/* strcpy(array[pos], array[last]); */
+		array[pos] = array[last];
+	}
+	(*len)--;
 }
 
 void strtolower(char *ch) {
