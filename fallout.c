@@ -16,7 +16,6 @@ void delete(char **array, int *len, const char *string) {
 	int pos = inarray( (const char **) array, *len, string );
 	int last = *len - 1;
 	if (pos != last) {
-		/* strcpy(array[pos], array[last]); */
 		array[pos] = array[last];
 	}
 	(*len)--;
