@@ -1,3 +1,7 @@
+/*
+Helps hack terminals in Fallout 3 and 4
+Copyright 2015, Styopa Semenukha, GPL v3+
+*/
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
