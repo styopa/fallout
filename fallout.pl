@@ -6,7 +6,7 @@ use warnings;
 use diagnostics;
 $\ = "\n";
 
-if ($#ARGV < 1) {
+if ($#ARGV < 2) {
 	my $num = $#ARGV + 1;
 	die "Too few arguments: $num\n" .
 		"USAGE: $0 PASSWORD PASSWORD..."
