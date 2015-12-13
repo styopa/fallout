@@ -12,9 +12,9 @@ int inarray(const char **array, int len, const char *string) {
 	return -1;
 }
 
-void remove(char **array, int *len, const char *string) {
+void delete(char **array, int *len, const char *string) {
 	int pos = inarray( (const char **) array, *len, string );
-	int last = len - 1;
+	int last = *len - 1;
 	if (pos != last) {
 		/* strcpy(array[pos], array[last]); */
 		array[pos] = array[last];
@@ -70,10 +70,10 @@ int main(int argc, char **argv) {
 			return 3;
 		}
 
-		remove(passwords, &n_passw, input);
+		delete(passwords, &n_passw, input);
 		for (j = n_passw; j > 0; --j) {
 			if (hamming(passwords[j], input) != correct) {
-				remove(passwords, &n_passw, passwords[j]);
+				delete(passwords, &n_passw, passwords[j]);
 			}
 		}
 
