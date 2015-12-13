@@ -1,4 +1,4 @@
 fallout
 =======
 
-Perl script to hack terminals in Fallout 3
+Scripts to hack terminals in Fallout 3 and 4
