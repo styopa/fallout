@@ -37,7 +37,7 @@ int hamming(const char *op1, const char *op2) {
 }
 
 int main(int argc, char **argv) {
-	int i;
+	int i, j, k;
 	int n_passw = argc - 1;
 
 	if (n_passw < 2) {
@@ -61,12 +61,37 @@ int main(int argc, char **argv) {
 	char *input;
 	int correct;
 	for (i = 0; i < n_passw; i++) {
-		printf("%s", "Enter password and number of correct letters\n> ");
+		printf("Enter password and number of correct letters\n> ");
 		if ( scanf("%ms %i", &input, &correct) != 2 ) return 0;
 		strtolower(input);
-		if (!inarray((const char **) passwords, n_passw, input)) {
+		if ( inarray((const char **) passwords, n_passw, input) == -1) {
 			fprintf(stderr, "%s is not in the list of possible passwords\n", input);
+			free(input);
 			return 3;
+		}
+
+		remove(passwords, &n_passw, input);
+		for (j = n_passw; j > 0; --j) {
+			if (hamming(passwords[j], input) != correct) {
+				remove(passwords, &n_passw, passwords[j]);
+			}
+		}
+
+		switch (n_passw) {
+			case 0:
+				fprintf(stderr, "No more passwords left\n");
+				free(input);
+				return 4;
+			case 1:
+				printf("The password is: %s\n", passwords[0]);
+				free(input);
+				return 0;
+			default:
+				printf("Possible passwords:");
+				for (k = 0; k < n_passw; k++) {
+					printf(" %s", passwords[k]);
+				}
+				printf("\n");
 		}
 
 		free(input);
