@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 
+/* Return the position of string in array, or -1 if not found */
 int inarray(const char **array, int len, const char *string) {
 	for (int i = 0; i < len; i++) {
 		if (!strcmp(string, array[i])) {
@@ -12,6 +13,7 @@ int inarray(const char **array, int len, const char *string) {
 	return -1;
 }
 
+/* Remove string from array, adjust array length */
 void delete(char **array, int *len, const char *string) {
 	int pos = inarray( (const char **) array, *len, string );
 	int last = *len - 1;
