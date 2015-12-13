@@ -3,6 +3,15 @@
 #include <stdlib.h>
 #include <ctype.h>
 
+int inarray(const char **array, int num, const char *string) {
+	for (int i = 0; i < num; i++) {
+		if (!strcmp(string, array[i])) {
+			return 1;
+		}
+	}
+	return 0;
+}
+
 void strtolower(char *ch) {
 	for (; *ch; ch++) *ch = tolower(*ch);
 }
@@ -45,6 +54,11 @@ int main(int argc, char **argv) {
 		printf("%s", "Enter password and number of correct letters\n> ");
 		if ( scanf("%ms %i", &input, &correct) != 2 ) return 0;
 		strtolower(input);
+		if (!inarray((const char **) passwords, n_passw, input)) {
+			fprintf(stderr, "%s is not in the list of possible passwords\n", input);
+			return 3;
+		}
+
 		free(input);
 	}
 }
