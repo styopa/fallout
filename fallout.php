@@ -33,7 +33,7 @@ $n = count($passwords);
 for ($i = 0; $i < $n; $i++) {
     echo "Enter password and number of correct letters\n> ";
     $line = fgets(STDIN);
-    $input = preg_split('\W+', $line);
+    $input = preg_split('/\W+/', $line);
     $entered = strtolower($input[0]);
     $correct = intval($input[1]);
 
@@ -59,7 +59,7 @@ for ($i = 0; $i < $n; $i++) {
         echo "The password is: ${passwords[0]}\n";
         exit(0);
     } else {
-        fwrite(STDERR, 'No more passwords left');
+        fwrite(STDERR, "No more passwords left\n");
         exit(4);
     }
 }
