@@ -1,5 +1,7 @@
 #!/usr/bin/php
 <?php
+# helps hack terminals in Fallout 3 and 4
+# copyright 2018, Styopa Semenukha, GPL v3+
 function hamming($op1, $op2) {
     $ar1 = str_split($op1);
     $ar2 = str_split($op2);
@@ -26,3 +28,38 @@ array_walk(
         $value = strtolower($value);
     }
 );
+
+$n = count($passwords);
+for ($i = 0; $i < $n; $i++) {
+    echo "Enter password and number of correct letters\n> ";
+    $line = fgets(STDIN);
+    $input = preg_split('\W+', $line);
+    $entered = strtolower($input[0]);
+    $correct = intval($input[1]);
+
+    $key = array_search($entered, $passwords, true);
+    if ($key === false) {
+        fwrite(STDERR, "$entered is not in the list of possible passwords\n");
+        exit(3);
+    } else {
+        unset($passwords[$key]);
+    }
+
+    $passwords = array_filter(
+        $passwords,
+        function ($value) use ($entered, $correct) {
+            return hamming($value, $entered) == $correct;
+        }
+    );
+
+    $num = count($passwords);
+    if ($num > 1) {
+        echo 'Possible passwords: ' . implode(' ', $passwords) . "\n";
+    } elseif ($num == 1) {
+        echo "The password is: ${passwords[0]}\n";
+        exit(0);
+    } else {
+        fwrite(STDERR, 'No more passwords left');
+        exit(4);
+    }
+}
