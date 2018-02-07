@@ -15,9 +15,10 @@ if [[ $# < 3 ]]; then
   exit 1
 fi
 
-for PASSWORD in $@; do
-  if [[ ${#PASSWORD} != ${#1} ]]; then
-    echo "Passwords are of different length: '$1' and '$PASSWORD'" >&2
+PASSWORDS=(${@,,})
+for PASSWORD in "${PASSWORDS[@]}"; do
+  if [[ ${#PASSWORD} != ${#PASSWORDS[0]} ]]; then
+    echo "Passwords are of different length: '${PASSWORDS[0]}' and '$PASSWORD'" >&2
     exit 2
   fi
 done
