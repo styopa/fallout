@@ -8,3 +8,16 @@ hamming() {
 
   echo "$N"
 }
+
+if [[ $# < 3 ]]; then
+  echo "Too few arguments: $#" >&2
+  echo "USAGE: $0 PASSWORD PASSWORD PASSWORD..."
+  exit 1
+fi
+
+for PASSWORD in $@; do
+  if [[ ${#PASSWORD} != ${#1} ]]; then
+    echo "Passwords are of different length: '$1' and '$PASSWORD'" >&2
+    exit 2
+  fi
+done
