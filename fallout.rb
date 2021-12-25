@@ -1,5 +1,8 @@
 #!/usr/bin/ruby
 def hamming(op1, op2)
+  i = 0
+  op1.chars.zip(op2.chars) { |c| i += 1 if c[0] == c[1] }
+  i
 end
 
 passwords = ARGV.map { |password| password.downcase }
