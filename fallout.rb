@@ -24,11 +24,17 @@ passwords.each do |password|
   end
 end
 
-(0..passwords.length).each do
+1.upto passwords.length do
   print "Enter password and number of correct letters\n> "
   line = $stdin.gets
   if line.nil? then
     $stderr.puts "Empty input"
     exit 0
+  end
+
+  entered, correct = line.downcase.split /\W+/
+  unless passwords.include? entered
+    $stderr.puts "#{entered} is not in the list of possible passwords"
+    exit 3
   end
 end
