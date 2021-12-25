@@ -20,3 +20,12 @@ passwords.each do |password|
     exit 2
   end
 end
+
+(0..passwords.length).each do
+  print "Enter password and number of correct letters\n> "
+  line = $stdin.gets
+  if line.nil? then
+    $stderr.puts "Empty input"
+    exit 0
+  end
+end
