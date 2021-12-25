@@ -37,4 +37,22 @@ end
     $stderr.puts "#{entered} is not in the list of possible passwords"
     exit 3
   end
+
+  passwords.delete entered
+  passwords.dup.each do |password|
+    if hamming(password, entered) != correct.to_i then
+      passwords.delete password
+    end
+  end
+
+  num = passwords.length
+  if num > 1 then
+    puts "Possible passwords: #{passwords.join(' ')}"
+  elsif num == 1 then
+    puts "The password is: #{passwords[0]}"
+    exit 0
+  else
+    $stderr.puts 'No more passwords left'
+    exit 4
+  end
 end
